@@ -223,3 +223,7 @@ __marimo__/
 .aider*
 .continue/
 .codeium/
+
+# Course materials (keep local only)
+*.pdf
+Course Jupyter Notebooks/
