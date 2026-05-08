@@ -1,0 +1,9 @@
+rank,artist,country,airplay_rank_overall,genre_rank,subgenre_rank,genre,subgenre,spins_in_belgium,stations_in_belgium
+1,Ed Sheeran,GBR,1,1,1,Pop,Mainstream Pop,119200,226
+2,Michael Jackson,USA,3,4,4,Pop,Mainstream Pop,85800,254
+3,SFK,MEX,106,295,4,Electronic,Techno,85100,1
+4,Madonna,USA,4,7,6,Pop,Mainstream Pop,84300,250
+5,ABBA,SWE,1,18,20,Pop,Mainstream Pop,80800,218
+6,Lady Gaga,USA,1,2,2,Pop,Mainstream Pop,79900,220
+7,David Guetta,FRA,1,1,1,Electronic,Dance,77800,206
+8,Boney M.,DEU,3,62,67,Pop,Mainstream Pop,73900,215

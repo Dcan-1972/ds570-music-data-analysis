@@ -1,0 +1,17 @@
+list_type,rank,artist,country,viberate_rank_overall,viberate_rank_genre,genre
+Events,1,Taylor Swift,USA,3,2,Pop
+Events,2,Justin Bieber,CAN,4,3,Pop
+Events,3,Drake,CAN,5,1,Hip Hop
+Events,4,The Weeknd,CAN,7,5,Pop
+Events,5,Billie Eilish,USA,8,6,Pop
+Events,6,Ariana Grande,USA,9,7,Pop
+Events,7,Ed Sheeran,GBR,14,11,Pop
+Events,8,Lady Gaga,USA,17,14,Pop
+Festivals,1,Zara Larsson,SWE,57,33,Pop
+Festivals,2,Alan Walker,NOR,72,3,Electronic
+Festivals,3,Gorillaz,GBR,113,9,Rock
+Festivals,4,Black Eyed Peas,USA,120,59,Pop
+Festivals,5,Sean Paul,JAM,132,1,Reggae
+Festivals,6,sombr,USA,154,76,Pop
+Festivals,7,PinkPantheress,GBR,177,86,Pop
+Festivals,8,Charli XCX,GBR,243,111,Pop

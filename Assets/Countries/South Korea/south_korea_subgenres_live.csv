@@ -1,0 +1,11 @@
+rank,subgenre,parent_genre,points_thousand
+1,Mainstream Pop,Pop,340.0
+2,k-pop,Pop,262.8
+3,Indie Pop,Pop,131.7
+4,Pop Rock,Rock,125.5
+5,Techno,Electronic,77.0
+6,Alternative Rock,Rock,48.5
+7,Alternative Hip Hop,Hip Hop,47.5
+8,Dance,Electronic,36.4
+9,Pop Punk,Punk,33.4
+10,Progressive Metal,Metal,30.0

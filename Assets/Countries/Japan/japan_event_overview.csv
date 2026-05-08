@@ -1,0 +1,18 @@
+section,category,value,unit
+Event Overview,Total Detected Events,4270,count
+Event Overview,Pop Events Share,40,percent
+Event Overview,Rock Events Share,31,percent
+Event Overview,Electronic Events Share,6,percent
+Event Overview,Other Events Share,23,percent
+Event Overview - Pop,Hall,50,percent
+Event Overview - Pop,Club,28,percent
+Event Overview - Pop,Bar,9,percent
+Event Overview - Pop,Other venues,13,percent
+Event Overview - Rock,Club,40,percent
+Event Overview - Rock,Hall,39,percent
+Event Overview - Rock,Bar,13,percent
+Event Overview - Rock,Other venues,8,percent
+Event Overview - Electronic,Club,65,percent
+Event Overview - Electronic,Hall,15,percent
+Event Overview - Electronic,Bar,11,percent
+Event Overview - Electronic,Other venues,9,percent

@@ -1,0 +1,17 @@
+list_type,rank,artist,country,viberate_rank_overall,viberate_rank_genre,genre
+Events,1,Bad Bunny,PRI,1,1,Latin
+Events,2,The Weeknd,CAN,7,5,Pop
+Events,3,Billie Eilish,USA,8,6,Pop
+Events,4,Shakira,COL,13,10,Pop
+Events,5,Ed Sheeran,GBR,14,11,Pop
+Events,6,Karol G,COL,18,2,Latin
+Events,7,Daddy Yankee,PRI,24,3,Latin
+Events,8,J Balvin,COL,25,4,Latin
+Festivals,1,KATSEYE,USA,15,12,Pop
+Festivals,2,Sabrina Carpenter,USA,20,16,Pop
+Festivals,3,Peso Pluma,MEX,30,7,Latin
+Festivals,4,Olivia Rodrigo,USA,39,25,Pop
+Festivals,5,Arcángel,USA,74,14,Latin
+Festivals,6,Shawn Mendes,CAN,75,42,Pop
+Festivals,7,Justin Timberlake,USA,99,52,Pop
+Festivals,8,Carin Leon,MEX,151,27,Latin

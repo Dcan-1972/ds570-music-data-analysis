@@ -1,0 +1,18 @@
+section,category,value,unit
+Festival Overview,Total Detected Festivals,44,count
+Festival Overview,Pop Festivals Share,32,percent
+Festival Overview,Rock Festivals Share,23,percent
+Festival Overview,Electronic Festivals Share,22,percent
+Festival Overview,Other Festivals Share,23,percent
+Festival Overview - Pop,Huge,45,percent
+Festival Overview - Pop,Big,29,percent
+Festival Overview - Pop,Medium,24,percent
+Festival Overview - Pop,Other sizes,2,percent
+Festival Overview - Rock,Huge,50,percent
+Festival Overview - Rock,Medium,25,percent
+Festival Overview - Rock,Big,23,percent
+Festival Overview - Rock,Other sizes,2,percent
+Festival Overview - Electronic,Huge,59,percent
+Festival Overview - Electronic,Big,24,percent
+Festival Overview - Electronic,Small,9,percent
+Festival Overview - Electronic,Other sizes,8,percent

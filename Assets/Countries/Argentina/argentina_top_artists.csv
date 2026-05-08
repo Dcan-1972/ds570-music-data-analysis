@@ -1,0 +1,17 @@
+performance_type,rank,artist,country,viberate_rank_overall,viberate_rank_genre,genre
+Event,1,Bad Bunny,PRI,1,1,Latin
+Event,2,Taylor Swift,USA,3,2,Pop
+Event,3,Justin Bieber,CAN,4,3,Pop
+Event,4,The Weeknd,CAN,7,5,Pop
+Event,5,Billie Eilish,USA,8,6,Pop
+Event,6,Shakira,COL,13,10,Pop
+Event,7,Karol G,COL,18,2,Latin
+Event,8,Sabrina Carpenter,USA,20,16,Pop
+Festival,1,KATSEYE,USA,15,12,Pop
+Festival,2,Sabrina Carpenter,USA,20,16,Pop
+Festival,3,Olivia Rodrigo,USA,39,25,Pop
+Festival,4,Shawn Mendes,CAN,75,42,Pop
+Festival,5,Queen,GBR,79,5,Rock
+Festival,6,Justin Timberlake,USA,99,52,Pop
+Festival,7,Tate McRae,CAN,160,79,Pop
+Festival,8,Milo j,ARG,164,24,Hip Hop

@@ -1,0 +1,9 @@
+rank,artist,country,airplay_rank_overall,genre_rank,subgenre_rank,genre,subgenre,spins_in_sweden,stations_in_sweden
+1,CASIOPEA,JPN,4,87,20,Jazz,Jazz Fusion,58300,1
+2,Ed Sheeran,GBR,1,1,1,Pop,Mainstream Pop,50400,52
+3,ABBA,SWE,1,18,20,Pop,Mainstream Pop,41200,58
+4,Molly Sandén,SWE,51,1307,1262,Pop,Mainstream Pop,39700,41
+5,Taylor Swift,USA,2,3,3,Pop,Mainstream Pop,32400,51
+6,Darin,SWE,41,956,942,Pop,Mainstream Pop,31200,49
+7,Lady Gaga,USA,1,2,2,Pop,Mainstream Pop,30200,55
+8,Madonna,USA,4,7,6,Pop,Mainstream Pop,30000,57

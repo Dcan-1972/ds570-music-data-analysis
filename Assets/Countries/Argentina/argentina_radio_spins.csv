@@ -1,0 +1,9 @@
+rank,artist,country,airplay_rank_overall,airplay_rank_genre,genre,airplay_rank_subgenre,subgenre,spins_in_argentina,stations_in_argentina
+1,Madonna,USA,4,7,Pop,6,Mainstream Pop,94500,249
+2,Michael Jackson,USA,3,4,Pop,4,Mainstream Pop,78400,256
+3,Soda Stereo,ARG,1,95,Rock,31,Alternative Rock,77800,231
+4,Queen,GBR,4,2,Rock,2,Hard Rock,75900,263
+5,Coldplay,GBR,6,3,Rock,3,Pop Rock,74400,240
+6,Maria Becerra,ARG,7,361,Pop,86,Latin Pop,73000,137
+7,Dua Lipa,GBR,2,6,Pop,5,Mainstream Pop,72800,206
+8,Charly García,ARG,14,349,Rock,252,Pop Rock,65600,201

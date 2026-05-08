@@ -1,0 +1,9 @@
+rank,artist,country,airplay_rank_overall,airplay_rank_genre,genre,airplay_rank_subgenre,subgenre,spins_in_canada,stations_in_canada
+1,The Beatles,GBR,3,1,Rock,1,Pop Rock,180300,319
+2,Morgan Wallen,USA,22,1,Country,1,Contemporary Country,168800,194
+3,Taylor Swift,USA,2,3,Pop,3,Mainstream Pop,154100,273
+4,Ed Sheeran,GBR,1,1,Pop,1,Mainstream Pop,142600,262
+5,The Rolling Stones,GBR,8,1,Blues,1,Blues Rock,134300,347
+6,The Tragically Hip,CAN,40,410,Rock,153,Alternative Rock,133000,214
+7,The Weeknd,CAN,1,8,Pop,7,Mainstream Pop,131200,223
+8,Bryan Adams,CAN,3,6,Rock,7,Pop Rock,129800,373

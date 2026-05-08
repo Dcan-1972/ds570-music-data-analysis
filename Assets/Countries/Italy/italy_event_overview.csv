@@ -1,0 +1,18 @@
+section,category,value,unit
+Event Overview,Total Detected Events,15174,count
+Event Overview,Pop Events Share,37,percent
+Event Overview,Rock Events Share,21,percent
+Event Overview,Hip Hop Events Share,16,percent
+Event Overview,Other Events Share,26,percent
+Event Overview - Pop,Hall,50,percent
+Event Overview - Pop,Public / Outdoor,18,percent
+Event Overview - Pop,Club,16,percent
+Event Overview - Pop,Other venues,16,percent
+Event Overview - Rock,Club,32,percent
+Event Overview - Rock,Hall,32,percent
+Event Overview - Rock,Public / Outdoor,14,percent
+Event Overview - Rock,Other venues,22,percent
+Event Overview - Hip Hop,Hall,39,percent
+Event Overview - Hip Hop,Club,25,percent
+Event Overview - Hip Hop,Public / Outdoor,22,percent
+Event Overview - Hip Hop,Other venues,14,percent

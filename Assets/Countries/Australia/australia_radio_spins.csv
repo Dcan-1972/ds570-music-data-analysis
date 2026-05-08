@@ -1,0 +1,9 @@
+rank,artist,country,airplay_rank_overall,airplay_rank_genre,genre,airplay_rank_subgenre,subgenre,spins_in_australia,stations_in_australia
+1,Ed Sheeran,GBR,1,1,Pop,1,Mainstream Pop,111700,156
+2,Taylor Swift,USA,2,3,Pop,3,Mainstream Pop,92800,147
+3,Sabrina Carpenter,USA,5,10,Pop,10,Mainstream Pop,80900,96
+4,Dua Lipa,GBR,2,6,Pop,5,Mainstream Pop,80800,130
+5,The Beatles,GBR,3,1,Rock,1,Pop Rock,66300,181
+6,U2,IRL,1,4,Rock,1,Alternative Rock,63000,199
+7,Lady Gaga,USA,1,2,Pop,2,Mainstream Pop,61300,141
+8,INXS,AUS,4,37,Rock,33,Pop Rock,60300,158

@@ -1,0 +1,17 @@
+list_type,rank,artist,country,viberate_rank_overall,viberate_rank_genre,genre
+Events,1,BTS,KOR,2,1,Pop
+Events,2,BLACKPINK,KOR,19,15,Pop
+Events,3,Coldplay,GBR,28,1,Rock
+Events,4,Stray Kids,KOR,31,21,Pop
+Events,5,Linkin Park,USA,35,3,Rock
+Events,6,Dua Lipa,GBR,43,26,Pop
+Events,7,Maroon 5,USA,47,29,Pop
+Events,8,ENHYPEN,KOR,61,35,Pop
+Festivals,1,Marshmello,USA,63,2,Electronic
+Festivals,2,Alan Walker,NOR,72,3,Electronic
+Festivals,3,Laufey,USA,125,1,Jazz
+Festivals,4,DJ Snake,FRA,138,6,Electronic
+Festivals,5,ITZY,KOR,214,100,Pop
+Festivals,6,Martin Garrix,NLD,245,9,Electronic
+Festivals,7,Skrillex,USA,319,13,Electronic
+Festivals,8,Audrey Nuna,USA,331,12,R&B

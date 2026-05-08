@@ -1,0 +1,9 @@
+rank,artist,country,airplay_rank_overall,airplay_rank_genre,genre,airplay_rank_subgenre,subgenre,spins_in_uk,stations_in_uk
+1,Ed Sheeran,GBR,1,1,Pop,1,Mainstream Pop,426400,714
+2,Taylor Swift,USA,2,3,Pop,3,Mainstream Pop,289300,640
+3,Lady Gaga,USA,1,2,Pop,2,Mainstream Pop,261200,699
+4,Dua Lipa,GBR,2,6,Pop,5,Mainstream Pop,255600,690
+5,Elton John,GBR,5,9,Pop,9,Mainstream Pop,247100,848
+6,Sabrina Carpenter,USA,5,10,Pop,10,Mainstream Pop,241800,508
+7,The Beatles,GBR,3,1,Rock,1,Pop Rock,235800,706
+8,Calvin Harris,GBR,7,2,Electronic,2,Dance,235400,683

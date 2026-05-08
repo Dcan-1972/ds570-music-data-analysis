@@ -1,0 +1,11 @@
+rank,city,venues,festivals,events,top_genre_1,top_genre_2,top_genre_3
+1,Tokyo,542,7,1480,Pop,Rock,Metal
+2,Osaka,151,4,344,,,
+3,Nagoya,103,2,322,,,
+4,Higashiosaka,39,0,286,,,
+5,Shibuya,53,0,156,,,
+6,Tsurumi,9,0,39,,,
+7,Sapporo,64,1,163,,,
+8,Fukuoka,57,2,149,,,
+9,Chiba,20,10,12,,,
+10,Shinjuku,49,0,185,,,

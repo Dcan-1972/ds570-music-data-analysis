@@ -1,0 +1,9 @@
+rank,artist,country,airplay_rank_overall,airplay_rank_genre,genre,airplay_rank_subgenre,subgenre,spins_in_germany,stations_in_germany
+1,Ed Sheeran,GBR,1,1,Pop,1,Mainstream Pop,1600000,1500
+2,Robin Schulz,DEU,1,4,Electronic,4,Dance,1000000,1300
+3,David Guetta,FRA,1,1,Electronic,1,Dance,981900,1300
+4,Lady Gaga,USA,1,2,Pop,2,Mainstream Pop,806100,1400
+5,Avicii,SWE,2,3,Electronic,3,Dance,804400,1300
+6,Dua Lipa,GBR,2,6,Pop,5,Mainstream Pop,745600,1300
+7,Taylor Swift,USA,2,3,Pop,3,Mainstream Pop,701800,1200
+8,Calvin Harris,GBR,7,2,Electronic,2,Dance,686300,1200

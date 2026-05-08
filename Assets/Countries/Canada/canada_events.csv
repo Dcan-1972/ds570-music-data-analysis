@@ -1,0 +1,14 @@
+genre,share_percent,venue_type,venue_share_percent
+Rock,28,Hall,45
+Rock,28,Bar,26
+Rock,28,Club,13
+Rock,28,Other,16
+Pop,21,Hall,54
+Pop,21,Bar,17
+Pop,21,Club,14
+Pop,21,Other,15
+Country,12,Hall,51
+Country,12,Bar,24
+Country,12,Other,12
+Country,12,Other venues,13
+Other,39,,

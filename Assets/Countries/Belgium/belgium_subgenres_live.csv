@@ -1,0 +1,11 @@
+rank,subgenre,parent_genre,points_million
+1,Mainstream Pop,Pop,5.4
+2,Indie Pop,Pop,2.5
+3,Alternative Rock,Rock,1.4
+4,Indie Rock,Rock,0.9732
+5,Dance,Electronic,0.9362
+6,Pop Rock,Rock,0.8864
+7,Folk Rock,Rock,0.7012
+8,Alternative Hip Hop,Hip Hop,0.6444
+9,Other Electronic Music,Electronic,0.5755
+10,Contemporary Hip Hop,Hip Hop,0.5611

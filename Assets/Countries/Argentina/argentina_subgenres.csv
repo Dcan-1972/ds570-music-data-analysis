@@ -1,0 +1,11 @@
+rank,subgenre,parent_genre,points_million
+1,Latin Pop,Pop,2.1
+2,Pop Rock,Rock,1.2
+3,Folk Rock,Rock,1.1
+4,Other Latin Music,Latin,0.888
+5,Alternative Rock,Rock,0.7834
+6,Indie Pop,Pop,0.6035
+7,Mainstream Pop,Pop,0.5858
+8,Tango,Latin,0.5037
+9,Indie Rock,Rock,0.2899
+10,Hard Rock,Rock,0.2854

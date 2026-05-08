@@ -1,0 +1,17 @@
+list_type,rank,artist,country,viberate_rank_overall,viberate_rank_genre,genre
+Events,1,Taylor Swift,USA,3,2,Pop
+Events,2,Justin Bieber,CAN,4,3,Pop
+Events,3,Bruno Mars,USA,6,4,Pop
+Events,4,Billie Eilish,USA,8,6,Pop
+Events,5,Ed Sheeran,GBR,14,11,Pop
+Events,6,Lady Gaga,USA,17,14,Pop
+Events,7,BLACKPINK,KOR,19,15,Pop
+Events,8,Sabrina Carpenter,USA,20,16,Pop
+Festivals,1,KATSEYE,USA,15,12,Pop
+Festivals,2,J Balvin,COL,25,4,Latin
+Festivals,3,Camila Cabello,USA,50,30,Pop
+Festivals,4,Jason Derulo,USA,55,32,Pop
+Festivals,5,Olivia Dean,GBR,66,37,Pop
+Festivals,6,Calvin Harris,GBR,78,4,Electronic
+Festivals,7,BABYMONSTER,KOR,81,44,Pop
+Festivals,8,Alex Warren,USA,115,56,Pop

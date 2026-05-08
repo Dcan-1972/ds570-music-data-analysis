@@ -1,0 +1,14 @@
+genre,share_percent,size,size_share_percent
+Electronic,47,Medium,30
+Electronic,47,Huge,23
+Electronic,47,Big,22
+Electronic,47,Other,25
+Latin,20,Huge,59
+Latin,20,Big,20
+Latin,20,Medium,8
+Latin,20,Other,13
+Pop,11,Big,35
+Pop,11,Mega,34
+Pop,11,Huge,17
+Pop,11,Other,14
+Other,22,,

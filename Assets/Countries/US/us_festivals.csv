@@ -1,0 +1,14 @@
+genre,share_percent,size,size_share_percent
+Electronic,23,Huge,30
+Electronic,23,Medium,26
+Electronic,23,Big,25
+Electronic,23,Other,19
+Country,18,Huge,28
+Country,18,Medium,28
+Country,18,Big,24
+Country,18,Other,20
+Rock,16,Huge,30
+Rock,16,Big,23
+Rock,16,Medium,23
+Rock,16,Other,24
+Other,43,,

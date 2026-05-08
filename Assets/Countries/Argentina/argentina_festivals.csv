@@ -1,0 +1,14 @@
+genre,share_percent,size,size_share_percent
+Rock,39,Mega,37
+Rock,39,Big,27
+Rock,39,Medium,20
+Rock,39,Other,16
+Pop,30,Big,51
+Pop,30,Mega,19
+Pop,30,Huge,18
+Pop,30,Other,12
+Hip Hop,12,Big,47
+Hip Hop,12,Huge,47
+Hip Hop,12,Medium,6
+Hip Hop,12,Other,0
+Other,19,,
