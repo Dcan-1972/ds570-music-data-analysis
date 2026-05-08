@@ -227,3 +227,7 @@ __marimo__/
 # Course materials (keep local only)
 *.pdf
 Course Jupyter Notebooks/
+
+# Generated project artifacts
+data/processed/*.csv
+outputs/*.pkl
