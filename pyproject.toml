@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=82.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "music-data-analysis"
+version = "0.1.0"
+description = "Artist rank prediction from cross-platform music metrics | DS570 Final Project"
+requires-python = ">=3.10"
+authors = [
+    {name = "Denizcan Bicakci", email = "denizcanbicakci@gmail.com"},
+]
+readme = "README.md"
+dependencies = [
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "streamlit",
+    "plotly",
+    "joblib",
+]
+
+[project.optional-dependencies]
+dev = [
+    "jupyterlab",
+    "ipykernel",
+]
+
+[project.scripts]
+process-data = "src.process:main"
+train-model = "src.train:main"
