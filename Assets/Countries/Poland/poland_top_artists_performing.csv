@@ -1,0 +1,17 @@
+list_type,rank,artist,country,viberate_rank_overall,viberate_rank_genre,genre
+Events,1,Bad Bunny,PRI,1,1,Latin
+Events,2,Justin Bieber,CAN,3,2,Pop
+Events,3,Taylor Swift,USA,4,3,Pop
+Events,4,The Weeknd,CAN,7,5,Pop
+Events,5,Billie Eilish,USA,8,6,Pop
+Events,6,Ariana Grande,USA,9,7,Pop
+Events,7,Ed Sheeran,GBR,14,11,Pop
+Events,8,Katy Perry,USA,22,18,Pop
+Festivals,1,J Balvin,COL,24,3,Latin
+Festivals,2,Linkin Park,USA,34,3,Rock
+Festivals,3,Dua Lipa,GBR,42,25,Pop
+Festivals,4,Camila Cabello,USA,52,30,Pop
+Festivals,5,Zara Larsson,SWE,56,33,Pop
+Festivals,6,Future,USA,60,10,Hip Hop
+Festivals,7,Doja Cat,USA,61,34,Pop
+Festivals,8,Olivia Dean,GBR,68,39,Pop

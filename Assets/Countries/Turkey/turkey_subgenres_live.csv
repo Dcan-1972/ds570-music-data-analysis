@@ -1,0 +1,11 @@
+rank,subgenre,parent_genre,points_million
+1,Arabic Pop,Pop,10.8
+2,Turkish Folk,Middle Eastern,6.3
+3,Mainstream Pop,Pop,4.2
+4,Alternative Rock,Rock,1.9
+5,Psychedelic Rock,Rock,1.7
+6,Contemporary Hip Hop,Hip Hop,1.4
+7,Indie Pop,Pop,0.9626
+8,Pop Rock,Rock,0.7366
+9,Indie Rock,Rock,0.4736
+10,Hard Rock,Rock,0.4342

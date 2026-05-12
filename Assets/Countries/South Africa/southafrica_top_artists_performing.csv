@@ -1,0 +1,17 @@
+list_type,rank,artist,country,viberate_rank_overall,viberate_rank_genre,genre
+Events,1,Justin Bieber,CAN,3,2,Pop
+Events,2,The Weeknd,CAN,7,5,Pop
+Events,3,Chris Brown,USA,23,19,Pop
+Events,4,Imagine Dragons,USA,45,4,Rock
+Events,5,Maroon 5,USA,46,28,Pop
+Events,6,Travis Scott,USA,51,6,Hip Hop
+Events,7,50 Cent,USA,58,8,Hip Hop
+Events,8,Doja Cat,USA,61,34,Pop
+Festivals,1,DJ Snake,FRA,140,6,Electronic
+Festivals,2,Martin Garrix,NLD,247,9,Electronic
+Festivals,3,Afrojack,NLD,889,30,Electronic
+Festivals,4,DJ Maphorisa,ZAF,1232,42,Electronic
+Festivals,5,John Summit,USA,1260,43,Electronic
+Festivals,6,Kabza De Small,ZAF,1332,44,Electronic
+Festivals,7,R3hab,NLD,1420,49,Electronic
+Festivals,8,CA7RIEL & Paco Amoroso,ARG,1445,242,Hip Hop

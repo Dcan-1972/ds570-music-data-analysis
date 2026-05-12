@@ -1,0 +1,18 @@
+section,category,subcategory,value,unit
+Event Overview,Total,Detected Events,664,count
+Event Overview,Genre Share,Pop,24,percent
+Event Overview,Genre Share,Electronic,22,percent
+Event Overview,Genre Share,Country,12,percent
+Event Overview,Genre Share,Other,42,percent
+Event Overview,Pop Events Venue,Bar,37,percent
+Event Overview,Pop Events Venue,Hall,35,percent
+Event Overview,Pop Events Venue,Other,12,percent
+Event Overview,Pop Events Venue,Other_2,16,percent
+Event Overview,Electronic Events Venue,Club,48,percent
+Event Overview,Electronic Events Venue,Bar,25,percent
+Event Overview,Electronic Events Venue,Other,15,percent
+Event Overview,Electronic Events Venue,Other_2,12,percent
+Event Overview,Country Events Venue,Hall,40,percent
+Event Overview,Country Events Venue,Bar,34,percent
+Event Overview,Country Events Venue,Other,13,percent
+Event Overview,Country Events Venue,Other_2,13,percent

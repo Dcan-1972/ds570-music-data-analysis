@@ -1,0 +1,18 @@
+section,category,value,unit
+Event Overview,Total Detected Events,9785,count
+Event Overview,Pop Events Share,22,percent
+Event Overview,Rock Events Share,21,percent
+Event Overview,Classical Events Share,13,percent
+Event Overview,Other Events Share,44,percent
+Event Overview - Pop,Hall,48,percent
+Event Overview - Pop,Club,21,percent
+Event Overview - Pop,Other,13,percent
+Event Overview - Pop,Other venues,18,percent
+Event Overview - Rock,Hall,41,percent
+Event Overview - Rock,Club,22,percent
+Event Overview - Rock,Bar,17,percent
+Event Overview - Rock,Other venues,20,percent
+Event Overview - Classical,Hall,58,percent
+Event Overview - Classical,Other,35,percent
+Event Overview - Classical,Public / Outdoor,4,percent
+Event Overview - Classical,Other venues,3,percent

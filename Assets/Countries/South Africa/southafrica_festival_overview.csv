@@ -1,0 +1,17 @@
+section,category,subcategory,value,unit
+Festival Overview,Total,Detected Festivals,37,count
+Festival Overview,Genre Share,Electronic,61,percent
+Festival Overview,Genre Share,Hip Hop,11,percent
+Festival Overview,Genre Share,African,11,percent
+Festival Overview,Genre Share,Other,17,percent
+Festival Overview,Electronic Festivals Size,Medium,29,percent
+Festival Overview,Electronic Festivals Size,Small,27,percent
+Festival Overview,Electronic Festivals Size,Huge,25,percent
+Festival Overview,Electronic Festivals Size,Other,19,percent
+Festival Overview,Hip Hop Festivals Size,Big,88,percent
+Festival Overview,Hip Hop Festivals Size,Medium,7,percent
+Festival Overview,Hip Hop Festivals Size,Small,5,percent
+Festival Overview,Hip Hop Festivals Size,Other,0,percent
+Festival Overview,African Festivals Size,Mega,71,percent
+Festival Overview,African Festivals Size,Big,29,percent
+Festival Overview,African Festivals Size,Other,0,percent

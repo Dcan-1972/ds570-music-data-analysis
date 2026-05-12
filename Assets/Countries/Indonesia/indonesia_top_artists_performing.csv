@@ -1,0 +1,17 @@
+list_type,rank,artist,country,viberate_rank_overall,viberate_rank_genre,genre
+Events,1,Justin Bieber,CAN,3,2,Pop
+Events,2,Bruno Mars,USA,6,4,Pop
+Events,3,Ed Sheeran,GBR,14,11,Pop
+Events,4,Linkin Park,USA,34,3,Rock
+Events,5,Dua Lipa,GBR,42,25,Pop
+Events,6,Marshmello,USA,62,2,Electronic
+Events,7,Wiz Khalifa,USA,81,14,Hip Hop
+Events,8,Charlie Puth,USA,91,47,Pop
+Festivals,1,J Balvin,COL,24,3,Latin
+Festivals,2,Calvin Harris,GBR,79,4,Electronic
+Festivals,3,Laufey,USA,126,1,Jazz
+Festivals,4,Teddy Swims,USA,185,90,Pop
+Festivals,5,Hindia,IDN,307,137,Pop
+Festivals,6,Skrillex,USA,312,13,Electronic
+Festivals,7,Joji,USA,390,18,R&B
+Festivals,8,Armin Van Buuren,NLD,631,19,Electronic

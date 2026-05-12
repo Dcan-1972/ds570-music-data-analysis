@@ -1,0 +1,18 @@
+section,category,subcategory,value,unit
+Event Overview,Total,Detected Events,5487,count
+Event Overview,Genre Share,Rock,24,percent
+Event Overview,Genre Share,Pop,24,percent
+Event Overview,Genre Share,Metal,15,percent
+Event Overview,Genre Share,Other,37,percent
+Event Overview,Rock Events Venue,Club,52,percent
+Event Overview,Rock Events Venue,Hall,27,percent
+Event Overview,Rock Events Venue,Bar,8,percent
+Event Overview,Rock Events Venue,Other,13,percent
+Event Overview,Pop Events Venue,Club,45,percent
+Event Overview,Pop Events Venue,Hall,36,percent
+Event Overview,Pop Events Venue,Bar,6,percent
+Event Overview,Pop Events Venue,Other,13,percent
+Event Overview,Metal Events Venue,Club,65,percent
+Event Overview,Metal Events Venue,Hall,17,percent
+Event Overview,Metal Events Venue,Bar,10,percent
+Event Overview,Metal Events Venue,Other,8,percent

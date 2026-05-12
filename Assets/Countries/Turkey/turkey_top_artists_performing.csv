@@ -1,0 +1,17 @@
+list_type,rank,artist,country,viberate_rank_overall,viberate_rank_genre,genre
+Events,1,Jason Derulo,USA,55,32,Pop
+Events,2,Justin Timberlake,USA,99,52,Pop
+Events,3,Guns N' Roses,USA,104,7,Rock
+Events,4,Gorillaz,GBR,110,8,Rock
+Events,5,Black Eyed Peas,USA,121,59,Pop
+Events,6,Arctic Monkeys,GBR,132,11,Rock
+Events,7,Central Cee,GBR,158,23,Hip Hop
+Events,8,Halsey,USA,172,83,Pop
+Festivals,1,Imagine Dragons,USA,45,4,Rock
+Festivals,2,Zara Larsson,SWE,56,33,Pop
+Festivals,3,Alessia Cara,CAN,701,270,Pop
+Festivals,4,Robin Schulz,DEU,721,23,Electronic
+Festivals,5,Lost Frequencies,BEL,1059,37,Electronic
+Festivals,6,Max Richter,GBR,3272,27,Classical
+Festivals,7,Hermanos Gutiérrez,CHE,6578,896,Latin
+Festivals,8,Declan McKenna,GBR,6813,2286,Pop

@@ -1,0 +1,18 @@
+section,category,value,unit
+Event Overview,Total Detected Events,9187,count
+Event Overview,Pop Events Share,44,percent
+Event Overview,Rock Events Share,19,percent
+Event Overview,Middle Eastern Events Share,17,percent
+Event Overview,Other Events Share,20,percent
+Event Overview - Pop,Hall,37,percent
+Event Overview - Pop,Club,23,percent
+Event Overview - Pop,Public / Outdoor,16,percent
+Event Overview - Pop,Other venues,24,percent
+Event Overview - Rock,Hall,35,percent
+Event Overview - Rock,Club,24,percent
+Event Overview - Rock,Bar,21,percent
+Event Overview - Rock,Other venues,20,percent
+Event Overview - Middle Eastern,Hall,45,percent
+Event Overview - Middle Eastern,Bar,18,percent
+Event Overview - Middle Eastern,Club,16,percent
+Event Overview - Middle Eastern,Other venues,21,percent

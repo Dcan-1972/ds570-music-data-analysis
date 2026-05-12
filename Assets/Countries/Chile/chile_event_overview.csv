@@ -1,0 +1,18 @@
+section,category,value,unit
+Event Overview,Total Detected Events,1219,count
+Event Overview,Pop Events Share,29,percent
+Event Overview,Rock Events Share,20,percent
+Event Overview,Latin Events Share,16,percent
+Event Overview,Other Events Share,35,percent
+Event Overview - Pop,Hall,57,percent
+Event Overview - Pop,Club,15,percent
+Event Overview - Pop,Other,12,percent
+Event Overview - Pop,Other venues,16,percent
+Event Overview - Rock,Hall,62,percent
+Event Overview - Rock,Club,19,percent
+Event Overview - Rock,Bar,12,percent
+Event Overview - Rock,Other venues,7,percent
+Event Overview - Latin,Hall,58,percent
+Event Overview - Latin,Club,16,percent
+Event Overview - Latin,Bar,12,percent
+Event Overview - Latin,Other venues,14,percent

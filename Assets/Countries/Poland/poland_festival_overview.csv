@@ -1,0 +1,18 @@
+section,category,subcategory,value,unit
+Festival Overview,Total,Detected Festivals,83,count
+Festival Overview,Genre Share,Electronic,52,percent
+Festival Overview,Genre Share,Pop,13,percent
+Festival Overview,Genre Share,Hip Hop,12,percent
+Festival Overview,Genre Share,Other,23,percent
+Festival Overview,Electronic Festivals Size,Big,26,percent
+Festival Overview,Electronic Festivals Size,Huge,24,percent
+Festival Overview,Electronic Festivals Size,Medium,23,percent
+Festival Overview,Electronic Festivals Size,Other,27,percent
+Festival Overview,Pop Festivals Size,Huge,50,percent
+Festival Overview,Pop Festivals Size,Mega,16,percent
+Festival Overview,Pop Festivals Size,Small,13,percent
+Festival Overview,Pop Festivals Size,Other,21,percent
+Festival Overview,Hip Hop Festivals Size,Medium,36,percent
+Festival Overview,Hip Hop Festivals Size,Huge,23,percent
+Festival Overview,Hip Hop Festivals Size,Mega,20,percent
+Festival Overview,Hip Hop Festivals Size,Other,21,percent
