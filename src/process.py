@@ -1,5 +1,22 @@
+import numpy as np
 import pandas as pd
 from src.config import GENRES_DIR, GENRE_NAMES, PROCESSED_DIR
+
+
+SKEWED_COLS = [
+    "Spotify Followers Total",
+    "Spotify Streams Total",
+    "Spotify Monthly Listeners Total",
+    "Spotify Playlist Reach Total",
+    "YouTube Subscribers Total",
+    "YouTube Views Total",
+    "YouTube Likes Total",
+    "TikTok Followers Total",
+    "Instagram Followers Total",
+    "Facebook Followers Total",
+    "Deezer Fans Total",
+    "SoundCloud Followers Total",
+]
 
 
 def load_raw() -> pd.DataFrame:
@@ -18,13 +35,34 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def add_rank_tier(df: pd.DataFrame) -> pd.DataFrame:
+    def tier(rank):
+        if rank <= 10:
+            return 1
+        if rank <= 50:
+            return 2
+        return 3
+    df["rank_tier"] = df["Rank"].apply(tier)
+    return df
+
+
+def add_log_features(df: pd.DataFrame) -> pd.DataFrame:
+    for col in SKEWED_COLS:
+        if col in df.columns:
+            df[f"{col} Log"] = np.log1p(df[col])
+    return df
+
+
 def main():
     df = load_raw()
     df = clean(df)
+    df = add_rank_tier(df)
+    df = add_log_features(df)
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
     out = PROCESSED_DIR / "artists_clean.csv"
     df.to_csv(out, index=False)
     print(f"Saved {len(df)} rows to {out}")
+    print(f"rank_tier distribution:\n{df['rank_tier'].value_counts().sort_index()}")
 
 
 if __name__ == "__main__":
