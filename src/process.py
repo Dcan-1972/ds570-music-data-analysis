@@ -53,6 +53,14 @@ def add_log_features(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def load_processed() -> pd.DataFrame:
+    path = PROCESSED_DIR / "artists_clean.csv"
+    df = pd.read_csv(path)
+    assert "rank_tier" in df.columns, "rank_tier column missing"
+    assert "Genre" in df.columns, "Genre column missing"
+    return df
+
+
 def main():
     df = load_raw()
     df = clean(df)
