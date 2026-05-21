@@ -1,3 +1,4 @@
+import joblib
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -13,8 +14,8 @@ from sklearn.model_selection import cross_val_score, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-from src.config import OUTPUTS_DIR
-from src.process import load_processed
+from music.config import OUTPUTS_DIR
+from music.process import load_processed
 
 TARGET = "rank_tier"
 LEAKAGE_COLS = [
@@ -129,6 +130,10 @@ def main():
     print("\nTop 10 features:")
     print(imp.head(10).to_string(index=False))
     save_feature_importance_chart(imp)
+
+    model_path = OUTPUTS_DIR / "model.pkl"
+    joblib.dump(pipe, model_path)
+    print(f"\nSaved trained model to {model_path}")
 
 
 if __name__ == "__main__":

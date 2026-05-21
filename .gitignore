@@ -231,3 +231,4 @@ Course Jupyter Notebooks/
 # Generated project artifacts
 data/processed/*.csv
 outputs/*.pkl
+outputs/*.html

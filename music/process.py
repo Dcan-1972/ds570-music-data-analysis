@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from src.config import GENRES_DIR, GENRE_NAMES, PROCESSED_DIR
+from music.config import GENRES_DIR, GENRE_NAMES, PROCESSED_DIR
 
 
 SKEWED_COLS = [
