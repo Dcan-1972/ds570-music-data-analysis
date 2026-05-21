@@ -1,13 +1,19 @@
 import numpy as np
 import pandas as pd
+import plotly.express as px
 from sklearn.compose import ColumnTransformer
 from sklearn.dummy import DummyClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import f1_score
+from sklearn.metrics import (
+    classification_report,
+    confusion_matrix,
+    f1_score,
+)
 from sklearn.model_selection import cross_val_score, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
+from src.config import OUTPUTS_DIR
 from src.process import load_processed
 
 TARGET = "rank_tier"
@@ -71,6 +77,33 @@ def cross_validate(pipe: Pipeline, X, y, cv: int = 5) -> np.ndarray:
     return cross_val_score(pipe, X, y, cv=cv, scoring="f1_macro", n_jobs=-1)
 
 
+def feature_importance(pipe: Pipeline) -> pd.DataFrame:
+    pre: ColumnTransformer = pipe.named_steps["pre"]
+    rf: RandomForestClassifier = pipe.named_steps["rf"]
+    names = pre.get_feature_names_out()
+    return (
+        pd.DataFrame({"feature": names, "importance": rf.feature_importances_})
+        .sort_values("importance", ascending=False)
+        .reset_index(drop=True)
+    )
+
+
+def save_feature_importance_chart(imp: pd.DataFrame, top_n: int = 15) -> None:
+    OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
+    top = imp.head(top_n)
+    fig = px.bar(
+        top.iloc[::-1],
+        x="importance",
+        y="feature",
+        orientation="h",
+        title=f"Top {top_n} Feature Importances — Random Forest",
+        labels={"importance": "Importance", "feature": "Feature"},
+    )
+    out = OUTPUTS_DIR / "feature_importance.html"
+    fig.write_html(out)
+    print(f"Saved feature importance chart to {out}")
+
+
 def main():
     df = load_processed()
     X, y = build_xy(df)
@@ -83,6 +116,19 @@ def main():
     pipe = build_pipeline(X_train)
     cv_scores = cross_validate(pipe, X_train, y_train)
     print(f"RF 5-fold CV F1-macro: {cv_scores.mean():.3f} (+/- {cv_scores.std():.3f})")
+
+    pipe.fit(X_train, y_train)
+    preds = pipe.predict(X_test)
+    print(f"Test F1-macro: {f1_score(y_test, preds, average='macro'):.3f}")
+    print("\nConfusion matrix (rows=true, cols=pred):")
+    print(confusion_matrix(y_test, preds))
+    print("\nClassification report:")
+    print(classification_report(y_test, preds, digits=3))
+
+    imp = feature_importance(pipe)
+    print("\nTop 10 features:")
+    print(imp.head(10).to_string(index=False))
+    save_feature_importance_chart(imp)
 
 
 if __name__ == "__main__":
