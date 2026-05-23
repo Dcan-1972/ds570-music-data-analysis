@@ -56,6 +56,23 @@ with eda_tab:
     fig.update_layout(showlegend=False)
     st.plotly_chart(fig, use_container_width=True)
 
+    st.subheader("Spotify vs TikTok reach")
+    scatter_df = view[
+        ["Artist Name", "Genre", "Spotify Streams Total", "TikTok Followers Total"]
+    ].dropna()
+    scatter_fig = px.scatter(
+        scatter_df,
+        x="Spotify Streams Total",
+        y="TikTok Followers Total",
+        color="Genre",
+        hover_name="Artist Name",
+        log_x=True,
+        log_y=True,
+        title="Spotify Streams vs TikTok Followers (log scale)",
+        opacity=0.7,
+    )
+    st.plotly_chart(scatter_fig, use_container_width=True)
+
 with ml_tab:
     st.header("Model Results")
     st.info("Model evaluation and feature importance coming next.")
