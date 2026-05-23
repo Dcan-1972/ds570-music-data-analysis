@@ -1,3 +1,5 @@
+import json
+
 import joblib
 import numpy as np
 import pandas as pd
@@ -6,6 +8,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.dummy import DummyClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (
+    accuracy_score,
     classification_report,
     confusion_matrix,
     f1_score,
@@ -120,7 +123,10 @@ def main():
 
     pipe.fit(X_train, y_train)
     preds = pipe.predict(X_test)
-    print(f"Test F1-macro: {f1_score(y_test, preds, average='macro'):.3f}")
+    test_f1 = f1_score(y_test, preds, average="macro")
+    test_acc = accuracy_score(y_test, preds)
+    print(f"Test F1-macro: {test_f1:.3f}")
+    print(f"Test accuracy: {test_acc:.3f}")
     print("\nConfusion matrix (rows=true, cols=pred):")
     print(confusion_matrix(y_test, preds))
     print("\nClassification report:")
@@ -134,6 +140,20 @@ def main():
     model_path = OUTPUTS_DIR / "model.pkl"
     joblib.dump(pipe, model_path)
     print(f"\nSaved trained model to {model_path}")
+
+    metrics = {
+        "baseline_f1_macro": float(baseline_f1),
+        "cv_f1_macro_mean": float(cv_scores.mean()),
+        "cv_f1_macro_std": float(cv_scores.std()),
+        "test_f1_macro": float(test_f1),
+        "test_accuracy": float(test_acc),
+        "n_train": int(len(X_train)),
+        "n_test": int(len(X_test)),
+    }
+    metrics_path = OUTPUTS_DIR / "metrics.json"
+    with open(metrics_path, "w") as f:
+        json.dump(metrics, f, indent=2)
+    print(f"Saved metrics to {metrics_path}")
 
 
 if __name__ == "__main__":

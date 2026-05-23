@@ -1,6 +1,11 @@
+import json
+
+import joblib
+import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+from music.config import OUTPUTS_DIR
 from music.process import load_processed
 
 st.set_page_config(
@@ -75,7 +80,50 @@ with eda_tab:
 
 with ml_tab:
     st.header("Model Results")
-    st.info("Model evaluation and feature importance coming next.")
+
+    metrics_path = OUTPUTS_DIR / "metrics.json"
+    model_path = OUTPUTS_DIR / "model.pkl"
+
+    if not metrics_path.exists() or not model_path.exists():
+        st.warning("Model artifacts not found. Run `train-model` first.")
+    else:
+        with open(metrics_path) as f:
+            metrics = json.load(f)
+
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("Baseline F1-macro", f"{metrics['baseline_f1_macro']:.3f}")
+        c2.metric("CV F1-macro", f"{metrics['cv_f1_macro_mean']:.3f}",
+                  help=f"+/- {metrics['cv_f1_macro_std']:.3f} across 5 folds")
+        c3.metric("Test F1-macro", f"{metrics['test_f1_macro']:.3f}")
+        c4.metric("Test accuracy", f"{metrics['test_accuracy']:.3f}")
+
+        st.caption(
+            f"Trained on {metrics['n_train']} artists, tested on {metrics['n_test']}. "
+            "Random Forest with class_weight='balanced' on imbalanced rank tiers."
+        )
+
+        model = joblib.load(model_path)
+        pre = model.named_steps["pre"]
+        rf = model.named_steps["rf"]
+        importance_df = (
+            pd.DataFrame({
+                "feature": pre.get_feature_names_out(),
+                "importance": rf.feature_importances_,
+            })
+            .sort_values("importance", ascending=False)
+            .head(15)
+        )
+
+        imp_fig = px.bar(
+            importance_df.iloc[::-1],
+            x="importance",
+            y="feature",
+            orientation="h",
+            title="Top 15 Feature Importances",
+            labels={"importance": "Importance", "feature": "Feature"},
+        )
+        imp_fig.update_layout(height=500)
+        st.plotly_chart(imp_fig, use_container_width=True)
 
 with about_tab:
     st.header("About this project")

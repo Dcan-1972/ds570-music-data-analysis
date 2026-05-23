@@ -232,3 +232,4 @@ Course Jupyter Notebooks/
 data/processed/*.csv
 outputs/*.pkl
 outputs/*.html
+outputs/*.json
