@@ -1,12 +1,16 @@
 import json
 
 import joblib
+import numpy as np
 import pandas as pd
 import plotly.express as px
 import streamlit as st
 
 from music.config import OUTPUTS_DIR
-from music.process import load_processed
+from music.process import SKEWED_COLS, load_processed
+from music.train import DROP_COLS
+
+TIER_LABELS = {1: "Top 10", 2: "Top 11-50", 3: "Top 51+"}
 
 st.set_page_config(
     page_title="Artist Rank Predictor",
@@ -124,6 +128,82 @@ with ml_tab:
         )
         imp_fig.update_layout(height=500)
         st.plotly_chart(imp_fig, use_container_width=True)
+
+        st.divider()
+        st.subheader("Predict an artist's rank tier")
+        st.caption("Enter platform metrics; unset values default to dataset medians.")
+
+        genres = sorted(df["Genre"].dropna().unique().tolist())
+        countries = sorted(df["Country"].dropna().unique().tolist())
+        default_country = df["Country"].mode().iloc[0]
+
+        with st.form("predict_form"):
+            col_a, col_b = st.columns(2)
+            with col_a:
+                in_genre = st.selectbox("Genre", genres)
+                in_country = st.selectbox(
+                    "Country", countries, index=countries.index(default_country)
+                )
+                in_spotify_followers = st.number_input(
+                    "Spotify Followers Total", min_value=0, value=1_000_000, step=10_000
+                )
+                in_spotify_streams = st.number_input(
+                    "Spotify Streams Total", min_value=0, value=500_000_000, step=1_000_000
+                )
+                in_monthly_listeners = st.number_input(
+                    "Spotify Monthly Listeners Total",
+                    min_value=0, value=2_000_000, step=10_000,
+                )
+            with col_b:
+                in_youtube_subs = st.number_input(
+                    "YouTube Subscribers Total", min_value=0, value=500_000, step=10_000
+                )
+                in_tiktok_followers = st.number_input(
+                    "TikTok Followers Total", min_value=0, value=200_000, step=10_000
+                )
+                in_instagram_followers = st.number_input(
+                    "Instagram Followers Total", min_value=0, value=1_000_000, step=10_000
+                )
+                in_deezer_fans = st.number_input(
+                    "Deezer Fans Total", min_value=0, value=100_000, step=10_000
+                )
+
+            submitted = st.form_submit_button("Predict tier")
+
+        if submitted:
+            template = {}
+            for col in df.columns:
+                if pd.api.types.is_numeric_dtype(df[col]):
+                    template[col] = float(df[col].median())
+                else:
+                    template[col] = df[col].mode().iloc[0]
+            row = pd.DataFrame([template])
+            row["Genre"] = in_genre
+            row["Country"] = in_country
+            row["Spotify Followers Total"] = in_spotify_followers
+            row["Spotify Streams Total"] = in_spotify_streams
+            row["Spotify Monthly Listeners Total"] = in_monthly_listeners
+            row["YouTube Subscribers Total"] = in_youtube_subs
+            row["TikTok Followers Total"] = in_tiktok_followers
+            row["Instagram Followers Total"] = in_instagram_followers
+            row["Deezer Fans Total"] = in_deezer_fans
+
+            for col in SKEWED_COLS:
+                log_col = f"{col} Log"
+                if log_col in row.columns:
+                    row[log_col] = np.log1p(row[col])
+
+            X_input = row.drop(columns=[c for c in DROP_COLS if c in row.columns])
+            tier = int(model.predict(X_input)[0])
+            probs = model.predict_proba(X_input)[0]
+            classes = model.classes_
+
+            st.success(f"Predicted rank tier: **{TIER_LABELS[tier]}** (class {tier})")
+            prob_df = pd.DataFrame({
+                "Tier": [TIER_LABELS[int(c)] for c in classes],
+                "Probability": probs,
+            })
+            st.bar_chart(prob_df.set_index("Tier"))
 
 with about_tab:
     st.header("About this project")
