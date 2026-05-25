@@ -1,0 +1,14 @@
+.git/
+.gitignore
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+notebooks/
+Course Jupyter Notebooks/
+data/processed/
+outputs/
+*.egg-info/
+.venv/
+venv/
+*.pdf
+.claude/
