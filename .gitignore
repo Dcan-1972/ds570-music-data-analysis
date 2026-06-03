@@ -217,13 +217,6 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Local AI/IDE assistant configurations
-.claude/
-.cursor/
-.aider*
-.continue/
-.codeium/
-
 # Course materials (keep local only)
 *.pdf
 Course Jupyter Notebooks/
