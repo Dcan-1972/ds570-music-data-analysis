@@ -81,6 +81,11 @@ with eda_tab:
         opacity=0.7,
     )
     st.plotly_chart(scatter_fig, use_container_width=True)
+    st.caption(
+        "Missing platform values were median-imputed during cleaning. That is why "
+        "some points line up in a horizontal band — those artists had no TikTok "
+        "data and were filled with the median follower count."
+    )
 
 with ml_tab:
     st.header("Model Results")
@@ -131,43 +136,39 @@ with ml_tab:
 
         st.divider()
         st.subheader("Predict an artist's rank tier")
-        st.caption("Enter platform metrics; unset values default to dataset medians.")
 
         genres = sorted(df["Genre"].dropna().unique().tolist())
         countries = sorted(df["Country"].dropna().unique().tolist())
         default_country = df["Country"].mode().iloc[0]
 
-        with st.form("predict_form"):
-            col_a, col_b = st.columns(2)
-            with col_a:
-                in_genre = st.selectbox("Genre", genres)
-                in_country = st.selectbox(
-                    "Country", countries, index=countries.index(default_country)
-                )
-                in_spotify_followers = st.number_input(
-                    "Spotify Followers Total", min_value=0, value=1_000_000, step=10_000
-                )
-                in_spotify_streams = st.number_input(
-                    "Spotify Streams Total", min_value=0, value=500_000_000, step=1_000_000
-                )
-                in_monthly_listeners = st.number_input(
-                    "Spotify Monthly Listeners Total",
-                    min_value=0, value=2_000_000, step=10_000,
-                )
-            with col_b:
-                in_youtube_subs = st.number_input(
-                    "YouTube Subscribers Total", min_value=0, value=500_000, step=10_000
-                )
-                in_tiktok_followers = st.number_input(
-                    "TikTok Followers Total", min_value=0, value=200_000, step=10_000
-                )
-                in_instagram_followers = st.number_input(
-                    "Instagram Followers Total", min_value=0, value=1_000_000, step=10_000
-                )
-                in_deezer_fans = st.number_input(
-                    "Deezer Fans Total", min_value=0, value=100_000, step=10_000
-                )
+        # The model leans on all of these cross-platform totals. The form exposes
+        # every one so the row it builds is internally consistent: setting only a
+        # few while the rest stayed at the (low-tier) median produced misleadingly
+        # pessimistic predictions even for superstar-level inputs.
+        superstar = df[df["rank_tier"] == 1]
 
+        def default_for(col):
+            return int(superstar[col].quantile(0.75))
+
+        st.caption(
+            "Enter cross-platform totals. Defaults are a typical Top-10 artist — "
+            "note the scale: top artists have **billions** of streams and tens of "
+            "millions of followers."
+        )
+
+        with st.form("predict_form"):
+            in_genre = st.selectbox("Genre", genres)
+            in_country = st.selectbox(
+                "Country", countries, index=countries.index(default_country)
+            )
+            inputs = {}
+            form_cols = st.columns(2)
+            for i, feat in enumerate(SKEWED_COLS):
+                with form_cols[i % 2]:
+                    default = default_for(feat)
+                    inputs[feat] = st.number_input(
+                        feat, min_value=0, value=default, step=max(1, default // 100)
+                    )
             submitted = st.form_submit_button("Predict tier")
 
         if submitted:
@@ -180,13 +181,8 @@ with ml_tab:
             row = pd.DataFrame([template])
             row["Genre"] = in_genre
             row["Country"] = in_country
-            row["Spotify Followers Total"] = in_spotify_followers
-            row["Spotify Streams Total"] = in_spotify_streams
-            row["Spotify Monthly Listeners Total"] = in_monthly_listeners
-            row["YouTube Subscribers Total"] = in_youtube_subs
-            row["TikTok Followers Total"] = in_tiktok_followers
-            row["Instagram Followers Total"] = in_instagram_followers
-            row["Deezer Fans Total"] = in_deezer_fans
+            for feat, val in inputs.items():
+                row[feat] = val
 
             for col in SKEWED_COLS:
                 log_col = f"{col} Log"
@@ -204,6 +200,11 @@ with ml_tab:
                 "Probability": probs,
             })
             st.bar_chart(prob_df.set_index("Tier"))
+            st.caption(
+                "Rank tiers are heavily imbalanced (50 / 200 / 2250), so the model "
+                "stays conservative about the Top-10 tier even for strong profiles. "
+                "The probability bars show the full picture, not just the label."
+            )
 
 with about_tab:
     st.header("About this project")
