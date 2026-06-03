@@ -28,6 +28,11 @@ within their genre?*
   (rank, country, label, Spotify/YouTube/TikTok/Instagram/Facebook/Deezer/
   SoundCloud/Beatport metrics). The snapshot is committed to this public
   repository so the project is fully reproducible without any login.
+- **What the pipeline actually uses:** only the five `Genres/<genre>/
+  <genre>-Artist-Chart-Current_Total.csv` files are read by `process.py`. The
+  `Assets/` folder also bundles Countries, Festivals, and Playlists exports;
+  these are kept for reference and possible future extensions but are not part
+  of the current model.
 - **Why bundled instead of fetched at runtime:** Viberate's chart export sits
   behind an account, so a live API/cloud fetch would force a sign-up — exactly
   what the guidelines forbid. Instead a one-time static snapshot (~34 MB) is
@@ -105,7 +110,7 @@ A three-tab Streamlit dashboard (`app/dashboard.py`):
 
 ```
 ds570-music-data-analysis/
-├── Assets/                    raw Viberate exports (5 genres)
+├── Assets/                    raw Viberate exports (pipeline uses 5 genre files)
 ├── music/
 │   ├── config.py              path constants
 │   ├── process.py             load, clean, feature-engineer
