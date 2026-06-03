@@ -35,7 +35,10 @@ within their genre?*
 
 - **Processing** (`music/process.py`): concatenate five genre files, median
   impute numeric columns, derive `rank_tier`, add `log1p` features for skewed
-  follower/stream counts.
+  follower/stream counts. Both the raw and log-scaled versions are kept as
+  features — they are collinear, which a Random Forest tolerates fine, but it
+  means raw and log of the same metric (e.g. Deezer Fans) can both appear near
+  the top of the importance ranking.
 - **Pipeline** (`music/train.py`): `ColumnTransformer` with `StandardScaler`
   for numeric features and `OneHotEncoder` for `Genre` and `Country`, feeding a
   `RandomForestClassifier(n_estimators=200, class_weight="balanced")`.
@@ -121,9 +124,16 @@ immediately.
 ## Limitations
 
 - **Imbalanced classes (50 / 200 / 2250):** even with `class_weight="balanced"`,
-  the model is conservative about predicting Top-10 — that tier has only ~10
-  training examples per fold. The prediction form's class-probability bars
-  expose this honestly rather than hiding it behind a single label.
+  the model struggles most with the **middle** tier (Top 11-50), which is only
+  ~8% of the data and overlaps heavily with the top of the Top-51+ tier on every
+  metric (visible in the EDA scatter). Concretely: a clearly superstar profile
+  is predicted Top 10, a weak profile is predicted Top 51+ with high confidence,
+  but a genuinely mid-level profile (e.g. ~2M Spotify followers, ~300M streams)
+  still falls into Top 51+ and is almost never assigned to Top 11-50 — the model
+  has not learned a distinct signature for the middle tier. The prediction
+  form's class-probability bars expose this honestly rather than hiding it behind
+  a single label. Oversampling (e.g. SMOTE) or collapsing the target to a binary
+  Top-50 / Top-51+ split would likely help, but both go beyond the scope here.
 - **Cross-sectional snapshot:** the data is a single point in time. The model
   predicts rank tier from current metrics; it doesn't capture momentum or
   career trajectory.
