@@ -28,6 +28,16 @@ within their genre?*
   (rank, country, label, Spotify/YouTube/TikTok/Instagram/Facebook/Deezer/
   SoundCloud/Beatport metrics). The snapshot is committed to this public
   repository so the project is fully reproducible without any login.
+- **Why bundled instead of fetched at runtime:** Viberate's chart export sits
+  behind an account, so a live API/cloud fetch would force a sign-up — exactly
+  what the guidelines forbid. Instead a one-time static snapshot (~34 MB) is
+  committed to the repo and `COPY`-ed into the image. The grader only runs
+  `docker build` + `docker run`: no download, no login, and the build stays
+  well under the time limit.
+- **Terms of use / licensing:** the data is Viberate's proprietary chart data,
+  used here strictly for non-commercial educational coursework. It is not
+  redistributed for any commercial purpose and is included only so this academic
+  project is self-contained and reproducible by the instructor and classmates.
 - **Target:** `rank_tier` derived from per-genre `Rank` — 1 = Top 10,
   2 = Top 11-50, 3 = Top 51+. Class distribution: 50 / 200 / 2250.
 
@@ -42,6 +52,20 @@ within their genre?*
 - **Pipeline** (`music/train.py`): `ColumnTransformer` with `StandardScaler`
   for numeric features and `OneHotEncoder` for `Genre` and `Country`, feeding a
   `RandomForestClassifier(n_estimators=200, class_weight="balanced")`.
+- **Why Random Forest:** the features are highly skewed, on wildly different
+  scales, and interact non-linearly (a huge TikTok following means something
+  different for a Metal artist than a Pop artist). A tree ensemble handles all
+  of this without heavy distributional assumptions, gives feature importances
+  for free, and supports `class_weight="balanced"` for the imbalance. Logistic
+  regression was a weaker fit (it assumes a linear log-odds relationship and is
+  sensitive to the collinear raw/log features); a single decision tree would
+  overfit; gradient boosting was avoided to keep training fast and the model
+  easy to explain in the oral demo.
+- **No data leakage:** every column that encodes the answer is dropped before
+  training (`LEAKAGE_COLS` in `train.py` — `Rank`, `Viberate Rank`, and the
+  per-platform rank columns), since the target is derived from `Rank`. All
+  preprocessing lives inside the `Pipeline`, so scaling/encoding are fit on the
+  training fold only and never see the test data.
 - **Evaluation:** stratified 80/20 train/test split, 5-fold cross-validation
   on the training set, F1-macro as the primary metric (the right choice given
   the heavy class imbalance), plus a `DummyClassifier(strategy="most_frequent")`
