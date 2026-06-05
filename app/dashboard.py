@@ -259,14 +259,30 @@ with ml_tab:
                 "how strong the values you entered are relative to other artists. "
                 "The chart below ranks the platforms pushing this prediction."
             )
-            st.bar_chart(driver_df.head(3).set_index("Platform"))
+            driver_fig = px.bar(
+                driver_df.head(3),
+                x="Platform",
+                y="Driver score",
+                color="Platform",
+            )
+            driver_fig.update_layout(showlegend=False, height=300)
+            st.plotly_chart(driver_fig, use_container_width=True)
 
             st.markdown("**Class probabilities**")
             prob_df = pd.DataFrame({
                 "Tier": [TIER_LABELS[int(c)] for c in classes],
                 "Probability": probs,
             })
-            st.bar_chart(prob_df.set_index("Tier"))
+            prob_fig = px.bar(
+                prob_df,
+                x="Tier",
+                y="Probability",
+                color="Tier",
+                text=prob_df["Probability"].map(lambda p: f"{p:.0%}"),
+            )
+            prob_fig.update_yaxes(range=[0, 1], tickformat=".0%")
+            prob_fig.update_layout(showlegend=False, height=300)
+            st.plotly_chart(prob_fig, use_container_width=True)
             st.caption(
                 "Rank tiers are heavily imbalanced (50 / 200 / 2250), so the model "
                 "stays conservative about the Top-10 tier even for strong profiles. "
