@@ -155,17 +155,22 @@ immediately.
 
 ## Limitations
 
-- **Imbalanced classes (50 / 200 / 2250):** even with `class_weight="balanced"`,
-  the model struggles most with the **middle** tier (Top 11-50), which is only
-  ~8% of the data and overlaps heavily with the top of the Top-51+ tier on every
-  metric (visible in the EDA scatter). Concretely: a clearly superstar profile
-  is predicted Top 10, a weak profile is predicted Top 51+ with high confidence,
-  but a genuinely mid-level profile (e.g. ~2M Spotify followers, ~300M streams)
-  still falls into Top 51+ and is almost never assigned to Top 11-50 — the model
-  has not learned a distinct signature for the middle tier. The prediction
-  form's class-probability bars expose this honestly rather than hiding it behind
-  a single label. Oversampling (e.g. SMOTE) or collapsing the target to a binary
-  Top-50 / Top-51+ split would likely help, but both go beyond the scope here.
+- **Imbalanced classes (50 / 200 / 2250):** the Top-51+ tier is essentially
+  solved (per-class F1 ≈ 0.98), but the two minority tiers are much harder —
+  on the held-out test set the Top-10 tier is recalled ~40% and the middle tier
+  (Top 11-50) ~50%. So the model *does* recover the middle tier about half the
+  time; the limit is the small number of top-tier artists, not a complete failure
+  to learn them. The prediction form's class-probability bars expose this
+  uncertainty honestly rather than hiding it behind a single label.
+- **What did and didn't help (tested):** adding cross-platform **momentum**
+  features from the 30d/3m/12m chart exports (month-over-month growth columns)
+  did *not* meaningfully move F1-macro (~0.005), which points to class scarcity
+  rather than feature poverty as the bottleneck. The one change that does lift the
+  score is reframing the **target**: collapsing to a binary Top-50 / Top-51+ split
+  reaches F1-macro ≈ 0.83 — but that answers an easier question (it drops the
+  Top-10 vs Top-11-50 distinction), so the more informative 3-class target is kept
+  as the headline model. Oversampling (e.g. SMOTE) is another option left out of
+  scope here.
 - **Cross-sectional snapshot:** the data is a single point in time. The model
   predicts rank tier from current metrics; it doesn't capture momentum or
   career trajectory.

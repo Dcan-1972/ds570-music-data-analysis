@@ -22,6 +22,10 @@ st.title("Artist Rank Predictor")
 st.caption(
     "Predicting artist rank tier from cross-platform music metrics — DS570 Final Project"
 )
+st.markdown(
+    "<hr style='border:none;border-top:3px solid #1F6FB2;margin:0.2rem 0 0.6rem;'>",
+    unsafe_allow_html=True,
+)
 
 @st.cache_data
 def load_data():
@@ -99,12 +103,20 @@ with ml_tab:
         with open(metrics_path) as f:
             metrics = json.load(f)
 
+        f1_lift = metrics["test_f1_macro"] - metrics["baseline_f1_macro"]
         c1, c2, c3, c4 = st.columns(4)
-        c1.metric("Baseline F1-macro", f"{metrics['baseline_f1_macro']:.3f}")
-        c2.metric("CV F1-macro", f"{metrics['cv_f1_macro_mean']:.3f}",
-                  help=f"+/- {metrics['cv_f1_macro_std']:.3f} across 5 folds")
-        c3.metric("Test F1-macro", f"{metrics['test_f1_macro']:.3f}")
-        c4.metric("Test accuracy", f"{metrics['test_accuracy']:.3f}")
+        with c1.container(border=True):
+            st.metric("Baseline F1-macro", f"{metrics['baseline_f1_macro']:.3f}",
+                      help="Most-frequent-class DummyClassifier")
+        with c2.container(border=True):
+            st.metric("CV F1-macro", f"{metrics['cv_f1_macro_mean']:.3f}",
+                      help=f"+/- {metrics['cv_f1_macro_std']:.3f} across 5 folds")
+        with c3.container(border=True):
+            st.metric("Test F1-macro", f"{metrics['test_f1_macro']:.3f}",
+                      delta=f"+{f1_lift:.3f} vs baseline")
+        with c4.container(border=True):
+            st.metric("Test accuracy", f"{metrics['test_accuracy']:.3f}",
+                      delta="headline")
 
         st.caption(
             f"Trained on {metrics['n_train']} artists, tested on {metrics['n_test']}. "
@@ -122,6 +134,9 @@ with ml_tab:
             .sort_values("importance", ascending=False)
             .head(15)
         )
+        importance_df["feature"] = importance_df["feature"].str.replace(
+            r"^(num__|cat__)", "", regex=True
+        )
 
         imp_fig = px.bar(
             importance_df.iloc[::-1],
@@ -136,6 +151,11 @@ with ml_tab:
 
         st.divider()
         st.subheader("Predict an artist's rank tier")
+        st.caption(
+            "Enter cross-platform totals. Defaults are a typical Top-10 artist — "
+            "note the scale: top artists have **billions** of streams and tens of "
+            "millions of followers."
+        )
 
         genres = sorted(df["Genre"].dropna().unique().tolist())
         countries = sorted(df["Country"].dropna().unique().tolist())
@@ -150,11 +170,11 @@ with ml_tab:
         def default_for(col):
             return int(superstar[col].quantile(0.75))
 
-        st.caption(
-            "Enter cross-platform totals. Defaults are a typical Top-10 artist — "
-            "note the scale: top artists have **billions** of streams and tens of "
-            "millions of followers."
-        )
+        # Group the inputs by platform (first word of the column name) so the form
+        # reads as Spotify / YouTube / TikTok / ... blocks instead of one long list.
+        platform_groups = {}
+        for feat in SKEWED_COLS:
+            platform_groups.setdefault(feat.split()[0], []).append(feat)
 
         with st.form("predict_form"):
             in_genre = st.selectbox("Genre", genres)
@@ -162,13 +182,16 @@ with ml_tab:
                 "Country", countries, index=countries.index(default_country)
             )
             inputs = {}
-            form_cols = st.columns(2)
-            for i, feat in enumerate(SKEWED_COLS):
-                with form_cols[i % 2]:
-                    default = default_for(feat)
-                    inputs[feat] = st.number_input(
-                        feat, min_value=0, value=default, step=max(1, default // 100)
-                    )
+            for platform, feats in platform_groups.items():
+                st.markdown(f"**{platform}**")
+                form_cols = st.columns(2)
+                for i, feat in enumerate(feats):
+                    with form_cols[i % 2]:
+                        default = default_for(feat)
+                        inputs[feat] = st.number_input(
+                            feat, min_value=0, value=default,
+                            step=max(1, default // 100),
+                        )
             submitted = st.form_submit_button("Predict tier")
 
         if submitted:
@@ -194,7 +217,51 @@ with ml_tab:
             probs = model.predict_proba(X_input)[0]
             classes = model.classes_
 
-            st.success(f"Predicted rank tier: **{TIER_LABELS[tier]}** (class {tier})")
+            # Medal-style badge: gold / silver / bronze for tiers 1 / 2 / 3.
+            tier_colors = {1: "#D4AF37", 2: "#9AA3AD", 3: "#B97A40"}
+            confidence = float(probs[list(classes).index(tier)])
+            st.markdown(
+                f"<div style='background:{tier_colors[tier]};color:#1a1a1a;"
+                f"padding:16px 22px;border-radius:12px;text-align:center;"
+                f"margin:0.4rem 0 0.8rem;'>"
+                f"<div style='font-size:1.7rem;font-weight:800;'>"
+                f"{TIER_LABELS[tier]}</div>"
+                f"<div style='font-size:0.95rem;font-weight:600;'>"
+                f"Predicted rank tier · {confidence:.0%} confidence</div></div>",
+                unsafe_allow_html=True,
+            )
+
+            # Which platform drove this prediction? Combine the model's feature
+            # importance with how strong the user's own value is for each metric
+            # (its percentile in the data), then roll up to the platform level.
+            imp_lookup = dict(zip(pre.get_feature_names_out(), rf.feature_importances_))
+            driver_scores = {}
+            for feat, val in inputs.items():
+                imp = imp_lookup.get(f"num__{feat}", 0.0) + imp_lookup.get(
+                    f"num__{feat} Log", 0.0
+                )
+                percentile = float((df[feat] < val).mean())
+                platform = feat.split()[0]
+                driver_scores[platform] = driver_scores.get(platform, 0.0) + (
+                    percentile * imp
+                )
+            driver_df = (
+                pd.DataFrame(
+                    {"Platform": list(driver_scores), "Driver score": list(driver_scores.values())}
+                )
+                .sort_values("Driver score", ascending=False)
+                .reset_index(drop=True)
+            )
+            top_platform = driver_df.iloc[0]["Platform"]
+            st.markdown(
+                f"**Biggest driver of this prediction: {top_platform}.** "
+                "This combines how influential each platform is to the model with "
+                "how strong the values you entered are relative to other artists. "
+                "The chart below ranks the platforms pushing this prediction."
+            )
+            st.bar_chart(driver_df.head(3).set_index("Platform"))
+
+            st.markdown("**Class probabilities**")
             prob_df = pd.DataFrame({
                 "Tier": [TIER_LABELS[int(c)] for c in classes],
                 "Probability": probs,
@@ -217,6 +284,14 @@ with about_tab:
         subscribers, TikTok, Instagram, Deezer, and SoundCloud counts.
 
         **Goal:** identify which platforms actually drive top-tier status.
+
+        **Technical notes:** the dataset is a 2,500-artist snapshot (500 per
+        genre). The model is a `RandomForestClassifier` with
+        `class_weight="balanced"` inside an sklearn `Pipeline`, trained on ~12 raw
+        platform totals plus their `log1p` versions and one-hot–encoded `Genre`
+        and `Country`. Performance is reported with **F1-macro** (the right metric
+        for the heavy 50 / 200 / 2250 class imbalance), benchmarked against a
+        most-frequent-class baseline.
 
         Built for DS570 — Introduction to Data Science.
         """
