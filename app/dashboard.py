@@ -39,15 +39,16 @@ eda_tab, ml_tab, about_tab = st.tabs(["EDA", "ML Results", "About"])
 with eda_tab:
     st.header("Exploratory Data Analysis")
 
-    genre_choice = st.selectbox(
+    all_genres = sorted(df["Genre"].unique().tolist())
+    genre_choice = st.multiselect(
         "Filter by genre",
-        options=["All"] + sorted(df["Genre"].unique().tolist()),
+        options=all_genres,
+        default=all_genres,
+        help="Pick one or more genres. Clear the box to show all genres.",
     )
 
-    if genre_choice == "All":
-        view = df
-    else:
-        view = df[df["Genre"] == genre_choice]
+    # Empty selection falls back to all genres so the charts are never blank.
+    view = df[df["Genre"].isin(genre_choice)] if genre_choice else df
 
     st.metric("Artists shown", len(view))
 
