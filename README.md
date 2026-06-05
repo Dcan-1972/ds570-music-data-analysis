@@ -180,4 +180,4 @@ immediately.
 
 ## Course
 
-Built for DS570 — Introduction to Data Science.
+Built for DS 570.A : Practical Applications of Data Science (Spring 2025/26)
