@@ -12,6 +12,16 @@ from music.train import DROP_COLS
 
 TIER_LABELS = {1: "Top 10", 2: "Top 11-50", 3: "Top 51+"}
 
+# Fixed genre -> color map so every chart (bar, scatter) colors a genre the same
+# way, regardless of the row order Plotly happens to see.
+GENRE_COLORS = {
+    "Pop": "#636EFA",
+    "Rock": "#EF553B",
+    "Hip Hop": "#00CC96",
+    "Electronic": "#AB63FA",
+    "Metal": "#FFA15A",
+}
+
 st.set_page_config(
     page_title="Artist Rank Predictor",
     page_icon=":musical_note:",
@@ -70,6 +80,7 @@ with eda_tab:
         x="Genre",
         y=metric,
         color="Genre",
+        color_discrete_map=GENRE_COLORS,
         title=f"Median {metric} by genre",
     )
     fig.update_layout(showlegend=False)
@@ -84,6 +95,7 @@ with eda_tab:
         x="Spotify Streams Total",
         y="TikTok Followers Total",
         color="Genre",
+        color_discrete_map=GENRE_COLORS,
         hover_name="Artist Name",
         log_x=True,
         log_y=True,
