@@ -52,20 +52,25 @@ with eda_tab:
 
     st.metric("Artists shown", len(view))
 
-    counts = (
-        view.groupby("Genre", as_index=False)
-        .size()
-        .rename(columns={"size": "Artist Count"})
-        .sort_values("Artist Count", ascending=False)
+    # Each genre has exactly 500 artists, so a raw count bar is flat and tells you
+    # nothing. Show the median of a chosen platform metric per genre instead — that
+    # actually varies (e.g. Pop streams dwarf Metal) and stays interactive.
+    metric = st.selectbox(
+        "Metric",
+        SKEWED_COLS,
+        index=SKEWED_COLS.index("Spotify Streams Total"),
     )
-
+    med = (
+        view.groupby("Genre", as_index=False)[metric]
+        .median()
+        .sort_values(metric, ascending=False)
+    )
     fig = px.bar(
-        counts,
+        med,
         x="Genre",
-        y="Artist Count",
+        y=metric,
         color="Genre",
-        title="Number of Artists per Genre",
-        labels={"Artist Count": "Number of Artists"},
+        title=f"Median {metric} by genre",
     )
     fig.update_layout(showlegend=False)
     st.plotly_chart(fig, use_container_width=True)
